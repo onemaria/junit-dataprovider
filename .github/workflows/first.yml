@@ -1,7 +1,6 @@
 name: 'my_first_flow'
 
-on:
-  workflow_dispatch:
+on: workflow_dispatch
 
 jobs:
   run-tests:
