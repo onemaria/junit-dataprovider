@@ -1,6 +1,6 @@
-name: my_first_flow
+name: First
 
-on: 
+on:
   workflow_dispatch:
 
 
@@ -13,8 +13,15 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '8'
-      - run: ./gradlew test
-      - run: ./gradlew integTest
+      - name: UnitTest
+        run: ./gradlew test
+      - name: integTest
+        run: ./gradlew integTest
+      - name: Publish Test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: "**/test-results/**/*.xml"
       
 
   
