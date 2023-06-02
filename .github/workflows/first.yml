@@ -12,3 +12,24 @@ jobs:
         uses: actions/checkout@v3
       - name: Print Hello World
         run: echo "Hello, World!"
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'zulu'
+          java-version: '8'
+      - name: UnitTest
+        run: ./gradlew test
+      - name: integTest
+        run: ./gradlew integTest
+      - name: Publish Test results
+        uses: EnricoMi/publish-unit-test-result-action@v1
+        if: always()
+        with:
+          files: "**/test-results/**/*.xml"
+
