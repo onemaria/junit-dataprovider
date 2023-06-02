@@ -1,4 +1,4 @@
-name: 'my_first_flow'
+name: my_first_flow
 
 on: workflow_dispatch
 
